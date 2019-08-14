@@ -72,7 +72,7 @@ where e.salario between '38000' and '43000';
 select e.dno, e.sexo,
 count(e.sexo)
 from empregado as e
-group by e.sexo, e.dno;
+group by e.dno, e.sexo;
 
 -- QUESTÃO 16
 select e.dno, 
@@ -106,7 +106,6 @@ where e.dno = '4'
 group by e.dno;
 
 -- QUESTÃO 21
-select e.endereco, e.sexo,
-avg(e.salario)
+select avg(e.salario)
 from empregado as e
-where 
+where e.sexo = 'M' and e.endereco like "%Houston%";
