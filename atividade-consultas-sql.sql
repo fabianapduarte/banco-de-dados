@@ -104,3 +104,9 @@ sum(e.salario)
 from empregado as e
 where e.dno = '4'
 group by e.dno;
+
+-- QUESTÃO 21
+select e.endereco, e.sexo,
+avg(e.salario)
+from empregado as e
+where 
