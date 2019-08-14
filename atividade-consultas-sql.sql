@@ -109,3 +109,9 @@ group by e.dno;
 select avg(e.salario)
 from empregado as e
 where e.sexo = 'M' and e.endereco like "%Houston%";
+
+-- QUESTÃO 22
+select e.pnome,
+count(e.pnome)
+from empregado as e
+group by e.pnome;
