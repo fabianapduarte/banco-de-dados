@@ -1,3 +1,5 @@
+use empresa;
+
 -- QUESTÃO 1
 select concat(e.pnome, ' ', e.minicial, '. ', e.unome)
 from empregado as e;
