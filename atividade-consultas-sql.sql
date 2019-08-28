@@ -123,3 +123,8 @@ select d.parentesco,
 count(d.parentesco)
 from dependente as d
 group by d.parentesco;
+
+-- QUESTÃO 24
+select e.pnome
+from empregado as e
+order by e.pnome;
