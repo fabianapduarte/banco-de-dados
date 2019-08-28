@@ -138,3 +138,10 @@ order by e.datanasc desc;
 select e.pnome
 from empregado as e
 order by e.salario desc, e.pnome asc;
+
+-- QUESTÃO 27
+select e.pnome
+from empregado as e
+inner join dependente as d
+on (d.essn = e.ssn)
+group by (e.pnome);
