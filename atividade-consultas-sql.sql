@@ -133,3 +133,8 @@ order by e.pnome;
 select e.pnome
 from empregado as e
 order by e.datanasc desc;
+
+-- QUESTÃO 26
+select e.pnome
+from empregado as e
+order by e.salario desc, e.pnome asc;
