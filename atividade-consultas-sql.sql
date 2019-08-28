@@ -132,7 +132,7 @@ order by e.pnome;
 -- QUESTÃO 25
 select e.pnome
 from empregado as e
-order by e.datanasc desc;
+order by e.datanasc asc;
 
 -- QUESTÃO 26
 select e.pnome
