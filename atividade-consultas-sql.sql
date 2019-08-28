@@ -117,3 +117,9 @@ select e.pnome,
 count(e.pnome)
 from empregado as e
 group by e.pnome;
+
+-- QUESTÃO 23
+select d.parentesco,
+count(d.parentesco)
+from dependente as d
+group by d.parentesco;
