@@ -128,3 +128,8 @@ group by d.parentesco;
 select e.pnome
 from empregado as e
 order by e.pnome;
+
+-- QUESTÃO 25
+select e.pnome
+from empregado as e
+order by e.datanasc desc;
