@@ -117,3 +117,31 @@ select e.pnome,
 count(e.pnome)
 from empregado as e
 group by e.pnome;
+
+-- QUESTÃO 23
+select d.parentesco,
+count(d.parentesco)
+from dependente as d
+group by d.parentesco;
+
+-- QUESTÃO 24
+select e.pnome
+from empregado as e
+order by e.pnome;
+
+-- QUESTÃO 25
+select e.pnome
+from empregado as e
+order by e.datanasc asc;
+
+-- QUESTÃO 26
+select e.pnome
+from empregado as e
+order by e.salario desc, e.pnome asc;
+
+-- QUESTÃO 27
+select e.pnome
+from empregado as e
+inner join dependente as d
+on (d.essn = e.ssn)
+group by (e.pnome);
