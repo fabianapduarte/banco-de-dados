@@ -150,4 +150,12 @@ group by (e.pnome);
 select e.pnome, e.datanasc, d.nome_dependente, d.datanasc
 from empregado as e
 inner join dependente as d
-on (d.parentesco = 'Cônjuge' and e.datanasc < d.datanasc);
+on (d.essn = e.ssn and d.parentesco = 'CÔNJUGE' and e.datanasc < d.datanasc);
+
+-- QUESTÃO 29
+select e.pnome
+from empregado as e
+	inner join trabalha_em as t
+	on (e.ssn = t.essn)
+	inner join projeto as p
+	on (t.pno = p.pnumero and e.dno <> p.dnum);
