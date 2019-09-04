@@ -145,3 +145,9 @@ from empregado as e
 inner join dependente as d
 on (d.essn = e.ssn)
 group by (e.pnome);
+
+-- QUESTÃO 28
+select e.pnome, e.datanasc, d.nome_dependente, d.datanasc
+from empregado as e
+inner join dependente as d
+on (d.parentesco = 'Cônjuge' and e.datanasc < d.datanasc);
