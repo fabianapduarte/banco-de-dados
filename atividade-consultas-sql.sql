@@ -65,7 +65,7 @@ select concat(e.pnome, ' ', e.unome)
 from empregado as e
 where e.sexo = 'F' and e.salario > 3000 and e.endereco like '%Berry%';
 
--- QUESTÃO  14
+-- QUESTÃO 14
 select e.pnome
 from empregado as e
 where e.salario between '38000' and '43000';
