@@ -132,7 +132,7 @@ order by e.pnome;
 -- QUESTÃO 25
 select e.pnome
 from empregado as e
-order by e.datanasc asc;
+order by e.datanasc asc ;
 
 -- QUESTÃO 26
 select e.pnome
@@ -140,7 +140,7 @@ from empregado as e
 order by e.salario desc, e.pnome asc;
 
 -- QUESTÃO 27
-select e.pnome
+select e.pnome, count(d.essn)
 from empregado as e
 inner join dependente as d
 on (d.essn = e.ssn)
