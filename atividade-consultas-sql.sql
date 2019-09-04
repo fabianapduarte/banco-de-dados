@@ -160,3 +160,12 @@ from empregado as e
 	inner join projeto as p
 	on (t.pno = p.pnumero and e.dno <> p.dnum)
 group by e.pnome;
+
+-- QUESTÃO 30
+select e.ssn, e.pnome, e.salario, (e.salario - a.media) as diferenca_salarial
+from empregado as e
+inner join (select avg(e.salario) as media, e.sexo
+			from empregado as e
+			group by e.sexo) as a
+on (e.sexo = a.sexo)
+group by e.pnome;
