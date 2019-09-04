@@ -158,4 +158,5 @@ from empregado as e
 	inner join trabalha_em as t
 	on (e.ssn = t.essn)
 	inner join projeto as p
-	on (t.pno = p.pnumero and e.dno <> p.dnum);
+	on (t.pno = p.pnumero and e.dno <> p.dnum)
+group by e.pnome;
