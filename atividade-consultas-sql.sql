@@ -169,3 +169,12 @@ inner join (select avg(e.salario) as media, e.sexo
 			group by e.sexo) as a
 on (e.sexo = a.sexo)
 group by e.pnome;
+
+-- QUESTÃO 31
+select e.ssn, e.pnome
+from empregado as e
+inner join (select sum(t.horas) as total_horas, t.essn
+			from trabalha_em as t
+            group by t.essn) as h
+on (h.essn = e.ssn and h.total_horas > 40.0)
+group by e.ssn;
