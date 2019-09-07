@@ -171,7 +171,7 @@ on (e.sexo = a.sexo)
 group by e.pnome;
 
 -- QUESTÃO 31
-select e.ssn, e.pnome
+select e.ssn, e.pnome, h.total_horas
 from empregado as e
 inner join (select sum(t.horas) as total_horas, t.essn
 			from trabalha_em as t
@@ -187,3 +187,25 @@ inner join (select count(*) as qtd_dependentes, d.essn
             group by d.essn) as q
 on (e.ssn = q.essn)
 group by e.pnome;
+
+-- QUESTÃO 34
+select e.ssn, e.pnome, e.datanasc
+from empregado as e
+	inner join (select count(*) as qtd_dependentes, d.essn
+				from dependente as d
+				group by d.essn) as q
+	on (e.ssn = q.essn and q.qtd_dependentes > 1)
+    
+	inner join (select sum(t.horas) as total_horas, t.essn
+				from trabalha_em as t
+				group by t.essn) as h
+	on (e.ssn = h.essn and h.total_horas > 5.0)
+    
+    inner join (select t.pno, t.essn
+				from trabalha_em as t) as n
+	on (e.ssn = n.essn)
+    
+    inner join (select p.pnumero, p.plocalizacao
+				from projeto as p) as l
+    on (n.pno = l.pnumero and l.plocalizacao = 'Houston')
+group by e.ssn;
