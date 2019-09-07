@@ -178,3 +178,12 @@ inner join (select sum(t.horas) as total_horas, t.essn
             group by t.essn) as h
 on (h.essn = e.ssn and h.total_horas > 40.0)
 group by e.ssn;
+
+-- QUESTÃO 32
+select e.pnome, qtd_dependentes
+from empregado as e
+inner join (select count(*) as qtd_dependentes, d.essn
+			from dependente as d
+            group by d.essn) as q
+on (e.ssn = q.essn)
+group by e.pnome;
