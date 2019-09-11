@@ -22,6 +22,7 @@ group by e.ssn;
 
 
 -- 32. Selecione o nome e a quantidades de dependentes de todos os funcionários.
+-- Minha solução
 select e.pnome, q.qtd_dependentes
 from empregado as e
 	inner join (select count(*) as qtd_dependentes, d.essn
@@ -30,6 +31,12 @@ from empregado as e
 	on (e.ssn = q.essn)
 group by e.pnome;
 
+-- Solução de Diogo
+select e.pnome, count(d.nome_dependente)
+from empregado as e
+left join dependente as d
+on e.ssn = d.essn
+group by e.pnome;
 
 -- 34. Selecione o ssn, nome e data de nascimento de todos os empregados que tem mais de um
 -- dependente, que trabalham mais de 5 horas e cujo departamento do projeto esteja em "Houston".
