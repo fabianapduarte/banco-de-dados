@@ -58,5 +58,5 @@ from empregado as e
     
     inner join (select p.pnumero, p.plocalizacao
 				from projeto as p) as l
-    on (n.pno = l.pnumero and l.plocalizacao = 'Houston')
+    on (n.pno = l.pnumero and l.plocalizacao like '%Houston%')
 group by e.ssn;
