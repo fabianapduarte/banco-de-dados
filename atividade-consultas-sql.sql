@@ -209,3 +209,14 @@ from empregado as e
 				from projeto as p) as l
     on (n.pno = l.pnumero and l.plocalizacao = 'Houston')
 group by e.ssn;
+
+-- QUESTÃO 35
+select e.ssn, e.pnome, y.pjnome, x.horas
+from empregado as e
+	inner join (select t.essn, t.pno, t.horas
+				from trabalha_em as t) as x
+	on (e.ssn = x.essn)
+	inner join (select p.pnumero, p.pjnome
+				from projeto as p) as y
+	on (x.pno = y.pnumero)
+order by e.ssn asc;
