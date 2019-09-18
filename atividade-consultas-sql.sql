@@ -235,3 +235,14 @@ from empregado as e
 	inner join (select s.ssn, s.pnome, s.salario
 				from empregado as s) as supervisor
 	on (e.superssn = supervisor.ssn);
+
+-- QUESTÃO 38
+select p.pjnome, y.dnome, p.plocalizacao, x.qtd_empregados
+from projeto as p
+	inner join (select count(*) as qtd_empregados, t.pno
+				from trabalha_em as t
+				group by t.pno) as x
+	on (x.pno = p.pnumero)
+	inner join (select d.dnumero, d.dnome
+				from departamento as d) as y
+	on (p.dnum = y.dnumero);
