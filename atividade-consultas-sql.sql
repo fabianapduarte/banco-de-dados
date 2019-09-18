@@ -220,3 +220,11 @@ from empregado as e
 				from projeto as p) as y
 	on (x.pno = y.pnumero)
 order by e.ssn asc;
+
+-- QUESTÃO 36
+select e.ssn, e.superssn, e.salario
+from empregado as e
+	inner join (select ssn, salario
+				from empregado) as supervisor
+	on (e.superssn = supervisor.ssn)
+where (e.salario > supervisor.salario);
