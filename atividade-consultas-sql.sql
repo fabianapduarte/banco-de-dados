@@ -228,3 +228,10 @@ from empregado as e
 				from empregado) as supervisor
 	on (e.superssn = supervisor.ssn)
 where (e.salario > supervisor.salario);
+
+-- QUESTÃO 37
+select e.pnome, e.salario, supervisor.pnome, supervisor.salario, (e.salario - supervisor.salario) as diferenca_salarial
+from empregado as e
+	inner join (select s.ssn, s.pnome, s.salario
+				from empregado as s) as supervisor
+	on (e.superssn = supervisor.ssn);
