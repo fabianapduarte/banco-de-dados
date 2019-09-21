@@ -255,3 +255,11 @@ from empregado as e
                 group by d.gerssn) as x
 	on (e.ssn = x.gerssn)
 where (x.qtd_departamentos > 1);
+
+-- QUESTÃO 40
+select e.ssn, e.pnome, e.dno
+from empregado as e
+	inner join (select d.gerssn, d.dnumero
+				from departamento as d) as x
+    on (e.ssn = x.gerssn)
+where (e.dno <> x.dnumero);
