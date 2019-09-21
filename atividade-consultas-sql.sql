@@ -246,3 +246,12 @@ from projeto as p
 	inner join (select d.dnumero, d.dnome
 				from departamento as d) as y
 	on (p.dnum = y.dnumero);
+    
+-- QUESTÃO 39
+select e.pnome, e.ssn
+from empregado as e
+	inner join (select d.gerssn, count(*) as qtd_departamentos
+				from departamento as d
+                group by d.gerssn) as x
+	on (e.ssn = x.gerssn)
+where (x.qtd_departamentos > 1);
