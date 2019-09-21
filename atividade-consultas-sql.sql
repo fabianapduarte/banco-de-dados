@@ -263,3 +263,12 @@ from empregado as e
 				from departamento as d) as x
     on (e.ssn = x.gerssn)
 where (e.dno <> x.dnumero);
+
+-- QUESTÃO 41
+select e.ssn, e.pnome
+from empregado as e
+	inner join (select d.essn, d.parentesco
+				from dependente as d) as x
+	on (e.ssn = x.essn)
+where (not x.parentesco = 'CÔNJUGE')
+group by e.ssn;
