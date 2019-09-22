@@ -1,289 +1,322 @@
-use empresa;
+USE empresa;
 
 -- QUESTÃO 1
-select concat(e.pnome, ' ', e.minicial, '. ', e.unome)
-from empregado as e;
+SELECT CONCAT(e.pnome, ' ', e.minicial, '. ', e.unome)
+FROM empregado AS e;
 
 -- QUESTÃO 2
-select d.dnome, d.dnumero
-from departamento as d;
+SELECT d.dnome, d.dnumero
+FROM departamento AS d;
 
 -- QUESTÃO 3
-select p.pnumero, p.pjnome, p.plocalizacao
-from projeto as p;
+SELECT p.pnumero, p.pjnome, p.plocalizacao
+FROM projeto AS p;
 
 -- QUESTÃO 4
-select e.ssn,
+SELECT e.ssn,
 	   e.pnome,
-       date_format(e.datanasc, '%d-%m-%Y')
-from empregado as e
-where e.sexo = 'M';
+       DATE_FORMAT(e.datanasc, '%d-%m-%Y')
+FROM empregado AS e
+WHERE e.sexo = 'M';
 
 -- QUESTÃO 5
-select e.pnome
-from empregado as e
-where e.superssn is null;
+SELECT e.pnome
+FROM empregado AS e
+WHERE e.superssn IS NULL;
 
 -- QUESTÃO 6
-select d.nome_dependente
-from dependente as d
-where d.parentesco = 'CÔNJUGE';
+SELECT d.nome_dependente
+FROM dependente AS d
+WHERE d.parentesco = 'CÔNJUGE';
 
 -- QUESTÃO 7
-select e.pnome
-from empregado as e
-where e.salario > 30000;
+SELECT e.pnome
+FROM empregado AS e
+WHERE e.salario > 30000;
 
 -- QUESTÃO 8
-select e.pnome
-from empregado as e
-where e.sexo = 'F' and e.salario > 25000;
+SELECT e.pnome
+FROM empregado AS e
+WHERE e.sexo = 'F' AND e.salario > 25000;
 
 -- QUESTÃO 9
-select e.pnome
-from empregado as e 
-where e.pnome like 'J%';
+SELECT e.pnome
+FROM empregado AS e 
+WHERE e.pnome LIKE 'J%';
 
 -- QUESTÃO 10
-select e.pnome
-from empregado as e
-where e.endereco like '%Houston%';
+SELECT e.pnome
+FROM empregado AS e
+WHERE e.endereco LIKE '%Houston%';
 
 -- QUESTÃO 11
-select d.nome_dependente,
-       date_format(d.datanasc, '%d-%m-%Y')
-from dependente as d
-where d.parentesco = 'CÔNJUGE' or d.parentesco = 'FILHO';
+SELECT d.nome_dependente,
+       DATE_FORMAT(d.datanasc, '%d-%m-%Y')
+FROM dependente AS d
+WHERE d.parentesco = 'CÔNJUGE' OR d.parentesco = 'FILHO';
 
 -- QUESTÃO 12
-select p.pjnome
-from projeto as p
-where p.plocalizacao = 'Stafford';
+SELECT p.pjnome
+FROM projeto AS p
+WHERE p.plocalizacao = 'Stafford';
 
 -- QUESTÃO 13
-select concat(e.pnome, ' ', e.unome)
-from empregado as e
-where e.sexo = 'F' and e.salario > 3000 and e.endereco like '%Berry%';
+SELECT CONCAT(e.pnome, ' ', e.unome)
+FROM empregado AS e
+WHERE e.sexo = 'F' AND e.salario > 3000 AND e.endereco LIKE '%Berry%';
 
 -- QUESTÃO 14
-select e.pnome
-from empregado as e
-where e.salario between '38000' and '43000';
+SELECT e.pnome
+FROM empregado AS e
+WHERE e.salario BETWEEN '38000' AND '43000';
 
 -- QUESTÃO 15
-select e.dno, e.sexo,
-count(e.sexo)
-from empregado as e
-group by e.dno, e.sexo;
+SELECT e.dno,
+	   e.sexo,
+       COUNT(e.sexo)
+FROM empregado AS e
+GROUP BY e.dno,
+		 e.sexo;
 
 -- QUESTÃO 16
-select e.dno, 
-count(e.dno)
-from empregado as e
-group by e.dno;
+SELECT e.dno, 
+	   COUNT(e.dno)
+FROM empregado AS e
+GROUP BY e.dno;
 
 -- QUESTÃO 17
-select p.dnum,
-count(p.dnum)
-from projeto as p
-group by p.dnum;
+SELECT p.dnum,
+	   COUNT(p.dnum)
+FROM projeto AS p
+GROUP BY p.dnum;
 
 -- QUESTÃO 18
-select e.dno,
-avg(e.salario)
-from empregado as e
-group by e.dno;
+SELECT e.dno,
+	   AVG(e.salario)
+FROM empregado AS e
+GROUP BY e.dno;
 
 -- QUESTÃO 19
-select e.sexo,
-max(e.salario)
-from empregado as e
-group by e.sexo;
+SELECT e.sexo,
+	   MAX(e.salario)
+FROM empregado AS e
+GROUP BY e.sexo;
 
 -- QUESTÃO 20
-select e.dno,
-sum(e.salario)
-from empregado as e
-where e.dno = '4'
-group by e.dno;
+SELECT e.dno,
+	   SUM(e.salario)
+FROM empregado AS e
+WHERE e.dno = '4'
+GROUP BY e.dno;
 
 -- QUESTÃO 21
-select avg(e.salario)
-from empregado as e
-where e.sexo = 'M' and e.endereco like "%Houston%";
+SELECT AVG(e.salario)
+FROM empregado AS e
+WHERE e.sexo = 'M' AND e.endereco LIKE "%Houston%";
 
 -- QUESTÃO 22
-select e.pnome,
-count(e.pnome)
-from empregado as e
-group by e.pnome;
+SELECT e.pnome,
+	   COUNT(e.pnome)
+FROM empregado AS e
+GROUP BY e.pnome;
 
 -- QUESTÃO 23
-select d.parentesco,
-count(d.parentesco)
-from dependente as d
-group by d.parentesco;
+SELECT d.parentesco,
+	   COUNT(d.parentesco)
+FROM dependente AS d
+GROUP BY d.parentesco;
 
 -- QUESTÃO 24
-select e.pnome
-from empregado as e
-order by e.pnome;
+SELECT e.pnome
+FROM empregado AS e
+ORDER BY e.pnome;
 
 -- QUESTÃO 25
-select e.pnome
-from empregado as e
-order by e.datanasc asc ;
+SELECT e.pnome
+FROM empregado AS e
+ORDER BY e.datanasc ASC;
 
 -- QUESTÃO 26
-select e.pnome
-from empregado as e
-order by e.salario desc, e.pnome asc;
+SELECT e.pnome
+FROM empregado AS e
+ORDER BY e.salario DESC,
+		 e.pnome ASC;
 
 -- QUESTÃO 27
-select e.pnome, count(d.essn)
-from empregado as e
-inner join dependente as d
-on (d.essn = e.ssn)
-group by (e.pnome);
+SELECT e.pnome,
+	   COUNT(d.essn)
+FROM empregado AS e
+INNER JOIN dependente AS d
+ON (d.essn = e.ssn)
+GROUP BY (e.pnome);
 
 -- QUESTÃO 28
-select e.pnome, e.datanasc, d.nome_dependente, d.datanasc
-from empregado as e
-inner join dependente as d
-on (d.essn = e.ssn and d.parentesco = 'CÔNJUGE' and e.datanasc < d.datanasc);
+SELECT e.pnome, e.datanasc, d.nome_dependente, d.datanasc
+FROM empregado AS e
+INNER JOIN dependente AS d
+ON (d.essn = e.ssn AND d.parentesco = 'CÔNJUGE' AND e.datanasc < d.datanasc);
 
 -- QUESTÃO 29
-select e.pnome
-from empregado as e
-	inner join trabalha_em as t
-	on (e.ssn = t.essn)
-	inner join projeto as p
-	on (t.pno = p.pnumero and e.dno <> p.dnum)
-group by e.pnome;
+SELECT e.pnome
+FROM empregado AS e
+INNER JOIN trabalha_em AS t
+ON (e.ssn = t.essn)
+INNER JOIN projeto AS p
+ON (t.pno = p.pnumero AND e.dno <> p.dnum)
+GROUP BY e.pnome;
 
 -- QUESTÃO 30
-select e.ssn, e.pnome, e.salario, (e.salario - a.media) as diferenca_salarial
-from empregado as e
-inner join (select avg(e.salario) as media, e.sexo
-			from empregado as e
-			group by e.sexo) as a
-on (e.sexo = a.sexo)
-group by e.pnome;
+SELECT e.ssn,
+	   e.pnome,
+       e.salario,
+       (e.salario - a.media) AS diferenca_salarial
+FROM empregado AS e
+INNER JOIN
+	(SELECT AVG(e.salario) AS media, e.sexo
+	 FROM empregado AS e
+	 GROUP BY e.sexo
+	) AS a
+ON (e.sexo = a.sexo)
+GROUP BY e.pnome;
 
 -- QUESTÃO 31
-select e.ssn, e.pnome, h.total_horas
-from empregado as e
-inner join (select sum(t.horas) as total_horas, t.essn
-			from trabalha_em as t
-            group by t.essn) as h
-on (h.essn = e.ssn and h.total_horas > 40.0)
-group by e.ssn;
+SELECT e.ssn,
+	   e.pnome,
+       h.total_horas
+FROM empregado AS e
+INNER JOIN
+	(SELECT SUM(t.horas) AS total_horas, t.essn
+	 FROM trabalha_em AS t
+	 GROUP BY t.essn
+	) AS h
+ON (h.essn = e.ssn AND h.total_horas > 40.0)
+GROUP BY e.ssn;
 
 -- QUESTÃO 32
-select e.pnome, qtd_dependentes
-from empregado as e
-inner join (select count(*) as qtd_dependentes, d.essn
-			from dependente as d
-            group by d.essn) as q
-on (e.ssn = q.essn)
-group by e.pnome;
+SELECT e.pnome,
+	   COUNT(d.nome_dependente)
+FROM empregado AS e
+LEFT JOIN dependente AS d
+ON (e.ssn = d.essn)
+GROUP BY e.pnome;
 
 -- QUESTÃO 33
-select e.ssn, e.pnome, t.pno, e.dno, p.dnum
-from empregado as e
-	inner join trabalha_em as t
-	on (e.ssn = t.essn)
-    inner join projeto as p
-    on (t.pno = p.pnumero and e.dno = p.dnum)
-    where e.ssn not in (
-					select e.ssn
-					from empregado as e
-					inner join trabalha_em as t on e.ssn = t.essn
-					inner join projeto as p on t.pno = p.pnumero and e.dno <> p.dnum
-					group by e.ssn)
-group by e.ssn;
+SELECT e.ssn,
+	   e.pnome
+FROM empregado AS e
+INNER JOIN trabalha_em AS t
+ON (e.ssn = t.essn)
+INNER JOIN projeto AS p
+ON (t.pno = p.pnumero AND e.dno = p.dnum)
+WHERE e.ssn NOT IN
+	(SELECT e.ssn
+	 FROM empregado AS e
+     INNER JOIN trabalha_em AS t
+     ON (e.ssn = t.essn)
+     INNER JOIN projeto AS p
+     ON (t.pno = p.pnumero AND e.dno <> p.dnum)
+     GROUP BY e.ssn)
+GROUP BY e.ssn;
 
 -- QUESTÃO 34
-select e.ssn, e.pnome, e.datanasc
-from empregado as e
-	inner join (select count(*) as qtd_dependentes, d.essn
-				from dependente as d
-				group by d.essn) as q
-	on (e.ssn = q.essn and q.qtd_dependentes > 1)
+SELECT e.ssn,
+	   e.pnome,
+       e.datanasc
+FROM empregado AS e
+INNER JOIN
+	(SELECT COUNT(*) AS qtd_dependentes, d.essn
+	 FROM dependente AS d
+     GROUP BY d.essn
+	) AS q
+ON (e.ssn = q.essn AND q.qtd_dependentes > 1)
     
-	inner join (select sum(t.horas) as total_horas, t.essn
-				from trabalha_em as t
-				group by t.essn) as h
-	on (e.ssn = h.essn and h.total_horas > 5.0)
+INNER JOIN
+	(SELECT SUM(t.horas) AS total_horas, t.essn
+	 FROM trabalha_em AS t
+     GROUP BY t.essn) AS h
+ON (e.ssn = h.essn AND h.total_horas > 5.0)
     
-    inner join (select t.pno, t.essn
-				from trabalha_em as t) as n
-	on (e.ssn = n.essn)
+INNER JOIN trabalha_em AS t
+ON (e.ssn = t.essn)
     
-    inner join (select p.pnumero, p.plocalizacao
-				from projeto as p) as l
-    on (n.pno = l.pnumero and l.plocalizacao = 'Houston')
-group by e.ssn;
+INNER JOIN projeto AS p
+ON (t.pno = p.pnumero AND p.plocalizacao = 'Houston')
+GROUP BY e.ssn;
 
 -- QUESTÃO 35
-select e.ssn, e.pnome, y.pjnome, x.horas
-from empregado as e
-	inner join (select t.essn, t.pno, t.horas
-				from trabalha_em as t) as x
-	on (e.ssn = x.essn)
-	inner join (select p.pnumero, p.pjnome
-				from projeto as p) as y
-	on (x.pno = y.pnumero)
-order by e.ssn asc;
+SELECT e.ssn,
+	   e.pnome,
+       p.pjnome,
+       t.horas
+FROM empregado AS e
+INNER JOIN trabalha_em AS t
+ON (e.ssn = t.essn)
+INNER JOIN projeto AS p
+ON (t.pno = p.pnumero)
+ORDER BY e.ssn ASC;
 
 -- QUESTÃO 36
-select e.ssn, e.superssn, e.salario
-from empregado as e
-	inner join (select ssn, salario
-				from empregado) as supervisor
-	on (e.superssn = supervisor.ssn)
-where (e.salario > supervisor.salario);
+SELECT e.ssn,
+	e.superssn,
+    e.salario
+FROM empregado AS e
+INNER JOIN empregado AS s
+ON (e.superssn = s.ssn)
+WHERE (e.salario > s.salario);
 
 -- QUESTÃO 37
-select e.pnome, e.salario, supervisor.pnome, supervisor.salario, (e.salario - supervisor.salario) as diferenca_salarial
-from empregado as e
-	inner join (select s.ssn, s.pnome, s.salario
-				from empregado as s) as supervisor
-	on (e.superssn = supervisor.ssn);
+SELECT e.pnome,
+	   e.salario,
+       s.pnome,
+       s.salario,
+       (e.salario - s.salario) AS diferenca_salarial
+FROM empregado AS e
+INNER JOIN empregado AS s
+ON (e.superssn = s.ssn);
 
 -- QUESTÃO 38
-select p.pjnome, y.dnome, p.plocalizacao, x.qtd_empregados
-from projeto as p
-	inner join (select count(*) as qtd_empregados, t.pno
-				from trabalha_em as t
-				group by t.pno) as x
-	on (x.pno = p.pnumero)
-	inner join (select d.dnumero, d.dnome
-				from departamento as d) as y
-	on (p.dnum = y.dnumero);
+SELECT p.pjnome,
+       d.dnome,
+       p.plocalizacao,
+       x.qtd_empregados
+FROM projeto AS p
+INNER JOIN
+	(SELECT COUNT(*) AS qtd_empregados, t.pno
+	 FROM trabalha_em AS t
+	 GROUP BY t.pno) AS x
+ON (x.pno = p.pnumero)
+INNER JOIN departamento AS d
+ON (p.dnum = d.dnumero);
     
 -- QUESTÃO 39
-select e.pnome, e.ssn
-from empregado as e
-	inner join (select d.gerssn, count(*) as qtd_departamentos
-				from departamento as d
-                group by d.gerssn) as x
-	on (e.ssn = x.gerssn)
-where (x.qtd_departamentos > 1);
+SELECT e.pnome,
+	   e.ssn
+FROM empregado AS e
+INNER JOIN
+	(SELECT d.gerssn, COUNT(*) AS qtd_departamentos
+	 FROM departamento AS d
+	 GROUP BY d.gerssn) AS x
+ON (e.ssn = x.gerssn)
+WHERE (x.qtd_departamentos > 1);
 
 -- QUESTÃO 40
-select e.ssn, e.pnome, e.dno
-from empregado as e
-	inner join (select d.gerssn, d.dnumero
-				from departamento as d) as x
-    on (e.ssn = x.gerssn)
-where (e.dno <> x.dnumero);
+SELECT e.ssn,
+	   e.pnome,
+       e.dno
+FROM empregado AS e
+INNER JOIN
+	(SELECT d.gerssn, d.dnumero
+	 FROM departamento AS d) AS x
+ON (e.ssn = x.gerssn)
+WHERE (e.dno <> x.dnumero);
 
 -- QUESTÃO 41
-select e.ssn, e.pnome
-from empregado as e
-	inner join (select d.essn, d.parentesco
-				from dependente as d) as x
-	on (e.ssn = x.essn)
-where (not x.parentesco = 'CÔNJUGE')
-group by e.ssn;
+SELECT e.ssn,
+	   e.pnome
+FROM empregado AS e
+INNER JOIN
+	(SELECT d.essn, d.parentesco
+	 FROM dependente AS d) AS x
+ON (e.ssn = x.essn)
+WHERE (NOT x.parentesco = 'CÔNJUGE')
+GROUP BY e.ssn;
