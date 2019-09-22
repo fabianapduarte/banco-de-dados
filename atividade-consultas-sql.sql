@@ -304,19 +304,15 @@ SELECT e.ssn,
 	   e.pnome,
        e.dno
 FROM empregado AS e
-INNER JOIN
-	(SELECT d.gerssn, d.dnumero
-	 FROM departamento AS d) AS x
-ON (e.ssn = x.gerssn)
-WHERE (e.dno <> x.dnumero);
+INNER JOIN departamento AS d
+ON (e.ssn = d.gerssn)
+WHERE (e.dno <> d.dnumero);
 
 -- QUESTÃO 41
 SELECT e.ssn,
 	   e.pnome
 FROM empregado AS e
-INNER JOIN
-	(SELECT d.essn, d.parentesco
-	 FROM dependente AS d) AS x
-ON (e.ssn = x.essn)
-WHERE (NOT x.parentesco = 'CÔNJUGE')
+INNER JOIN dependente AS d
+ON (e.ssn = d.essn)
+WHERE d.parentesco <> 'CONJUGE'
 GROUP BY e.ssn;
