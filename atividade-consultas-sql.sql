@@ -188,6 +188,21 @@ inner join (select count(*) as qtd_dependentes, d.essn
 on (e.ssn = q.essn)
 group by e.pnome;
 
+-- QUESTÃO 33
+select e.ssn, e.pnome, t.pno, e.dno, p.dnum
+from empregado as e
+	inner join trabalha_em as t
+	on (e.ssn = t.essn)
+    inner join projeto as p
+    on (t.pno = p.pnumero and e.dno = p.dnum)
+    where e.ssn not in (
+					select e.ssn
+					from empregado as e
+					inner join trabalha_em as t on e.ssn = t.essn
+					inner join projeto as p on t.pno = p.pnumero and e.dno <> p.dnum
+					group by e.ssn)
+group by e.ssn;
+
 -- QUESTÃO 34
 select e.ssn, e.pnome, e.datanasc
 from empregado as e
