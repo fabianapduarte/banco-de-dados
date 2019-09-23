@@ -151,10 +151,14 @@ ON (d.essn = e.ssn)
 GROUP BY (e.pnome);
 
 -- QUESTÃO 28
-SELECT e.pnome, e.datanasc, d.nome_dependente, d.datanasc
+SELECT e.pnome,
+	   e.datanasc,
+	   d.nome_dependente,
+	   d.datanasc
 FROM empregado AS e
 INNER JOIN dependente AS d
-ON (d.essn = e.ssn AND d.parentesco = 'CÔNJUGE' AND e.datanasc < d.datanasc);
+ON (d.essn = e.ssn)
+WHERE (d.parentesco = 'CÔNJUGE' AND e.datanasc < d.datanasc);
 
 -- QUESTÃO 29
 SELECT e.pnome
@@ -162,7 +166,8 @@ FROM empregado AS e
 INNER JOIN trabalha_em AS t
 ON (e.ssn = t.essn)
 INNER JOIN projeto AS p
-ON (t.pno = p.pnumero AND e.dno <> p.dnum)
+ON (t.pno = p.pnumero)
+WHERE (e.dno <> p.dnum)
 GROUP BY e.pnome;
 
 -- QUESTÃO 30
@@ -189,7 +194,8 @@ INNER JOIN
 	 FROM trabalha_em AS t
 	 GROUP BY t.essn
 	) AS h
-ON (h.essn = e.ssn AND h.total_horas > 40.0)
+ON (h.essn = e.ssn)
+WHERE (h.total_horas > 40.0)
 GROUP BY e.ssn;
 
 -- QUESTÃO 32
