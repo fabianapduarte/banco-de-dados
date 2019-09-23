@@ -1,7 +1,7 @@
 USE empresa;
 
 -- QUESTÃO 1
-SELECT CONCAT(e.pnome, ' ', e.minicial, '. ', e.unome)
+SELECT CONCAT(e.pnome, ' ', e.minicial, '. ', e.unome) AS nome_completo
 FROM empregado AS e;
 
 -- QUESTÃO 2
@@ -15,7 +15,7 @@ FROM projeto AS p;
 -- QUESTÃO 4
 SELECT e.ssn,
 	   e.pnome,
-       DATE_FORMAT(e.datanasc, '%d-%m-%Y')
+       DATE_FORMAT(e.datanasc, '%d-%m-%Y') AS data_nascimento
 FROM empregado AS e
 WHERE e.sexo = 'M';
 
@@ -51,7 +51,7 @@ WHERE e.endereco LIKE '%Houston%';
 
 -- QUESTÃO 11
 SELECT d.nome_dependente,
-       DATE_FORMAT(d.datanasc, '%d-%m-%Y')
+       DATE_FORMAT(d.datanasc, '%d-%m-%Y') AS data_nascimento
 FROM dependente AS d
 WHERE d.parentesco = 'CÔNJUGE' OR d.parentesco = 'FILHO';
 
@@ -61,9 +61,9 @@ FROM projeto AS p
 WHERE p.plocalizacao = 'Stafford';
 
 -- QUESTÃO 13
-SELECT CONCAT(e.pnome, ' ', e.unome)
+SELECT CONCAT(e.pnome, ' ', e.unome) AS nome
 FROM empregado AS e
-WHERE e.sexo = 'F' AND e.salario > 3000 AND e.endereco LIKE '%Berry%';
+WHERE e.sexo = 'F' AND e.salario > 30000 AND e.endereco LIKE '%Berry%';
 
 -- QUESTÃO 14
 SELECT e.pnome
@@ -73,44 +73,44 @@ WHERE e.salario BETWEEN '38000' AND '43000';
 -- QUESTÃO 15
 SELECT e.dno,
 	   e.sexo,
-       COUNT(e.sexo)
+       COUNT(e.sexo) AS qtd_empregados
 FROM empregado AS e
 GROUP BY e.dno,
 		 e.sexo;
 
 -- QUESTÃO 16
 SELECT e.dno, 
-	   COUNT(e.dno)
+	   COUNT(e.dno) AS qtd_empregados
 FROM empregado AS e
 GROUP BY e.dno;
 
 -- QUESTÃO 17
 SELECT p.dnum,
-	   COUNT(p.dnum)
+	   COUNT(p.dnum) AS qtd_departamentos
 FROM projeto AS p
 GROUP BY p.dnum;
 
 -- QUESTÃO 18
 SELECT e.dno,
-	   AVG(e.salario)
+	   AVG(e.salario) AS media_salarial
 FROM empregado AS e
 GROUP BY e.dno;
 
 -- QUESTÃO 19
 SELECT e.sexo,
-	   MAX(e.salario)
+	   MAX(e.salario) AS maior_salario
 FROM empregado AS e
 GROUP BY e.sexo;
 
 -- QUESTÃO 20
 SELECT e.dno,
-	   SUM(e.salario)
+	   SUM(e.salario) AS soma_salario
 FROM empregado AS e
 WHERE e.dno = '4'
 GROUP BY e.dno;
 
 -- QUESTÃO 21
-SELECT AVG(e.salario)
+SELECT AVG(e.salario) AS media_salario
 FROM empregado AS e
 WHERE e.sexo = 'M' AND e.endereco LIKE "%Houston%";
 
@@ -143,8 +143,7 @@ ORDER BY e.salario DESC,
 		 e.pnome ASC;
 
 -- QUESTÃO 27
-SELECT e.pnome,
-	   COUNT(d.essn)
+SELECT e.pnome
 FROM empregado AS e
 INNER JOIN dependente AS d
 ON (d.essn = e.ssn)
@@ -200,7 +199,7 @@ GROUP BY e.ssn;
 
 -- QUESTÃO 32
 SELECT e.pnome,
-	   COUNT(d.nome_dependente)
+	   COUNT(d.nome_dependente) AS qtd_dependentes
 FROM empregado AS e
 LEFT JOIN dependente AS d
 ON (e.ssn = d.essn)
@@ -253,7 +252,7 @@ GROUP BY e.ssn;
 SELECT e.ssn,
 	   e.pnome,
        p.pjnome,
-       t.horas
+       t.horas AS total_horas
 FROM empregado AS e
 INNER JOIN trabalha_em AS t
 ON (e.ssn = t.essn)
@@ -320,5 +319,10 @@ SELECT e.ssn,
 FROM empregado AS e
 INNER JOIN dependente AS d
 ON (e.ssn = d.essn)
-WHERE d.parentesco <> 'CONJUGE'
+WHERE d.parentesco = 'FILHA' AND e.ssn IN
+	(SELECT e.ssn
+	 FROM empregado AS e
+     INNER JOIN dependente AS d
+	 ON (e.ssn = d.essn)
+     WHERE d.parentesco = 'FILHO')
 GROUP BY e.ssn;
