@@ -5,11 +5,14 @@ SELECT CONCAT(e.pnome, ' ', e.minicial, '. ', e.unome) AS nome_completo
 FROM empregado AS e;
 
 -- QUESTÃO 2
-SELECT d.dnome, d.dnumero
+SELECT d.dnome,
+	   d.dnumero
 FROM departamento AS d;
 
 -- QUESTÃO 3
-SELECT p.pnumero, p.pjnome, p.plocalizacao
+SELECT p.pnumero,
+	   p.pjnome,
+	   p.plocalizacao
 FROM projeto AS p;
 
 -- QUESTÃO 4
@@ -262,8 +265,8 @@ ORDER BY e.ssn ASC;
 
 -- QUESTÃO 36
 SELECT e.ssn,
-	e.superssn,
-    e.salario
+	   e.superssn,
+	   e.salario
 FROM empregado AS e
 INNER JOIN empregado AS s
 ON (e.superssn = s.ssn)
@@ -288,7 +291,8 @@ FROM projeto AS p
 INNER JOIN
 	(SELECT COUNT(*) AS qtd_empregados, t.pno
 	 FROM trabalha_em AS t
-	 GROUP BY t.pno) AS x
+	 GROUP BY t.pno
+	) AS x
 ON (x.pno = p.pnumero)
 INNER JOIN departamento AS d
 ON (p.dnum = d.dnumero);
@@ -300,7 +304,8 @@ FROM empregado AS e
 INNER JOIN
 	(SELECT d.gerssn, COUNT(*) AS qtd_departamentos
 	 FROM departamento AS d
-	 GROUP BY d.gerssn) AS x
+	 GROUP BY d.gerssn
+	) AS x
 ON (e.ssn = x.gerssn)
 WHERE (x.qtd_departamentos > 1);
 
